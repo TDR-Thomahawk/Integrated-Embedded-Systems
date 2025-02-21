@@ -1,4 +1,4 @@
----
+﻿---
 layout: page
 title: "Chapter 1: Transistors"
 parent: Analogue Electronics
@@ -11,7 +11,7 @@ Transistors are used as basic building blocks in amplifiers. They can also be us
 
 ## Bipolar Junction Transistors
 
-The BJT (Bipolar Junction Transistor) is a very common current controlled transistor. A small current flowing through the base ($I_{b}$) allows a much larger current to flow between the collector and the emitter. The amount of current allowed to flow is related to the gain, often shown as $\beta$ or $H_{fe}$, of the transistor. The important formula to remember, with $I_{c}$ the collector current, is:
+The BJT (Bipolar Junction Transistor) is a very common current controlled transistor. A small current flowing through the base ($I_{b}$) allows a much larger current to flow between the collector and the emitter. The amount of current allowed to flow is related to the gain, often shown as $\beta$ or $H_{fe}$, of the transistor. The important formula to remember, with $I_{c}$ as the collector current, is:
 
 {: .note }
 $I_{c} = \beta\times I_{b}$ , valid when the transistor is operated in its linear mode.
@@ -61,24 +61,23 @@ The maximum voltage across the base-emitter junction is about 0.7 V.
 $\therefore V_b-V_e\approx \ 0.7 \ V$ , provided
 $V_{in} >V_{e} + 0.7 \ V$.
 
-This 0.7 V depends on the transistor, a bit on the value of $I_b$, the
-temperature of the transistor and is an approximate value, but can for
-most applications be regarded as a constant. The formula also assumes
+This 0.7 V difference depends on the transistor, a bit on the value of $I_b$ and the temperature of the transistor. It is an approximate value, but can (for
+most applications) be regarded as a constant. The formula also assumes
 that $V_{in} > V_e + 0.7\ V$ otherwise $V_{be}$ won't be
 roundabout 0.7 V.
 
 {: .note }
 $i_e=i_c+i_b$ , since it is obeying Kirchoff's Current Law (KCL).
 
-The transistor has i.e. for small $i_b$ a much bigger $i_c$ will flow.
-The ratio of $\frac{i_c}{i_b}$ is $\beta$ which is the current gain. A
+The transistor is a current amplifier i.e. for a small $i_b$ a much bigger $i_c$ will flow.
+The ratio of $\frac{i_c}{i_b}$ is $\beta$ and is known as the current gain. A
 typical specified value of $\beta$ for a 2N3904 transistor is about 100.
-You are not going to necessarily get this value of $\beta$ in a circuit,
+You are not necessarily going to get this value of $\beta$ in a circuit,
 as you will see in the next example. Therefore we talk of a specified
 $\beta$ and an effective $\beta$. We normally run this circuit in
-"saturated mode". In this mode the supply voltage can provide enough
-current $i_c$ so that $i_c$ is limited by the resistance or impedance of
-the load, not by the transistor. In other words the voltage across the
+"saturated mode" (hence saturated switch). In this mode the supply voltage can provide enough
+current $i_c$ such that $i_c$ is limited by the resistance or impedance of
+the load, and not by the transistor. In other words the voltage across the
 transistor, from the collector to the emitter, will be small.
 
 To illustrate this:
@@ -95,13 +94,13 @@ By Ohm's Law:
 
 $$i={V}/{R}=\frac{12\ \mathrm{V}}{12\ \mathrm{\Omega }}=1\ A$$
 Take the same load and put it into a transistor switch circuit, with
-still 12 V at the top:
+12 V still at the top:
 
 <img src="./images/1.3b.png" width="50%" alt="Current flowing through a transistor switch circuit"/>
 _Figure 1.3b: Current flowing through a transistor switch circuit_
 
 
-We want to specify the base current so that we allow at least almost 1 A
+We want to specify a base current such that we allow at least almost 1 A
 to flow through the load. If we give the base even more current, almost
 1 A will still flow through the transistor. It can't be more because the
 voltage from collector to emitter can't be negative in this case (NPN
@@ -118,11 +117,11 @@ $$\beta=\frac{0.8 A}{I_{b}}.$$
 {: .note }
 Depending on the transistor specifications, 0.2 V to 0.5 V is the
 smallest $V_{ce}$ can be. If the transistor is not saturated, $V_{ce}$
-will be bigger because then it will be in the linear mode.
+will be greater because it is in linear mode.
 
-So, with the transistor in saturated mode:
+With the transistor in saturated mode:
 
-1.  $V_{ce}$ will be roundabout 0.2 V to 0.5 V; and
+1.  $V_{ce}$ will be approximately 0.2 V to 0.5 V; and
 
 2.  the effective $\beta$ will be less than the $\beta$ as specified for
     the transistor in linear mode.
@@ -138,7 +137,7 @@ $V_{ce}$ of 0.2 V.
 
 Suppose that $V_{in}$ comes from a microcontroller which guarantees a
 minimum high level output of 2.4 V. If this output is high, we want
-maximum current to flow through the load. With low level maximum 0.5 V from the micro, the voltage across the load must be 0 V. What value of $R_b$ should we use?
+the maximum current to flow through the load. With a low level maximum of 0.5 V from the microcontroller, the voltage across the load must be 0 V. What value of $R_b$ should we use?
 
 What is the effective $\beta$ of the transistor now?
 
@@ -160,10 +159,10 @@ $\therefore$ the effective gain is,
 $$\ \beta =\frac{i_c}{i_b}=\frac{(12-0.2)/12.0}{(2.4-0.7)/39}=22.6$$
 </div>
 
-Note that the effective value of $\beta$ may be smaller than the given minimum value of $\beta$: it is possible because the design is for the saturation mode. What will happen if we replace the 12 $\Omega$ load with a higher resistance load, like 22 $\Omega$ for example, withoutchanging $R_b$?
+Note that the effective value of $\beta$ may be smaller than the given minimum value of $\beta$: it is possible because the design is for the saturation mode. What will happen if we replace the 12 $\Omega$ load with a higher resistance load, like 22 $\Omega$ for example, without changing $R_b$?
 
 The $\beta$ of the transistor will effectively decrease because $V_{ce}$
-can't go smaller than a certain value (like 0.2 V typically). So if the transistor is saturated (very much switched on), thus $V_{ce}$ is the minimum it can be, $\beta$ can effectively be even smaller than theminimum given in the spec sheet of the transistor.
+can't go smaller than a certain value (like 0.2 V typically). So if the transistor is saturated (very much switched on), thus $V_{ce}$ is the minimum it can be, $\beta$ can effectively be even smaller than the minimum given in the spec sheet of the transistor.
 
 This is possible because the minimum given for $\beta$ in the spec sheet
 is for the condition of _non-saturation_ or _linear mode_.
@@ -328,7 +327,7 @@ circuit:
 <img src="./images/1.8.png" width="50%" alt="Saturated switch circuit with a PNP transistor"/>
 _Figure 1.8: Saturated switch circuit with a PNP transistor_
 
-In this case $V_b$ must be 0.7 V than $V_e$.
+In this case $V_b$ must be 0.7 V greater than $V_e$.
 
 Requirement: $V_{in}<V_e-0.7$ V for current to flow in the load.
 
