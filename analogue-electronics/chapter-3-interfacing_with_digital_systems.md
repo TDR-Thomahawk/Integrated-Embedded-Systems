@@ -7,24 +7,26 @@ nav_order: 4
 
 # Chapter 3: Interfacing with Digital Systems
 
-At the end of Chapter 1, the example of a MOSFET H-bridge was given, and it was mentioned that a microcontroller output with levels 0 V or 3.3 V can provide the Drive Signals for the H-bridge, because a level adjuster was already part of the circuitry given there. The 3.3 V level will however have to be increased if a BJT H-bridge is used.
+Interfacing a micro-controller with external circuitry can be a challenging task and frequently requires a signal to be either multiplied by a gain or offset by some value. This signal conditioning is completed on both micro-controller inputs and outputs.
 
-Likewise, the inputs to microcontrollers must be designed to vary only between 0 V and 3.3 V if they are inputs to the A/Ds of micros, or they must have logical levels of 0 V or 3.3 V if they are logical inputs to micros. But the sensors or sensor circuitry could be producing voltages way beyond these levels.
+In Chapter 1 we showed how a MOSFET H-bridge can be driven with a micro-controller by using two NPN BJT level adjusters. This simple addition to the H-bridge operates by multiplying the input signal from a micro-controller with some gain and shows how the output of a micro-controller can be conditioned.
 
-Circuitry is required to do these.
+Likewise, an input signal to a micro-controller must be adjusted such that its voltage varies between 0 V and 3.3 V. If this is not completed, the sampled signal from the micro-controller can be saturated resulting in a digital signal that is essentially useless.
+
+This chapter will expand on two types of circuits that can be used to interface an external circuit with a micro-controller by discussing level adjusters and how to apply a gain to a signal.
 
 ## Level adjusters
 
-A level adjuster must in principle do two things to a signal that must be inputted to a micro:
+A level adjuster is a type of Op-Amp circuit that is used to condition a signal to or from a micro-controller by:
 
--   Add an offset voltage to the signal.
--   Multiply the signal with a gain (or an attenuation, but take note: attenuations are often also called gains, attenuation is a gain of less than 1.0).
+- Adding an DC offset to the signal.
+- Multiplying the signal by some gain value.
 
-Let's think of the original signal to be $x$ and the level adjusted signal to be $y$. The level adjuster must perform the following: $y = mx + c$ or $y = m(x +c)$.
+We can write the operation of this circuit quite simply. Consider an input signal $x$ and output (level adjusted) signal $y$, the operation of the level adjuster can then be written as:
 
-Because differential amplifiers are often the best to use for level adjusters, the last equation is the best to use.
+$$y = m(x +c)$$
 
-If $x$ can vary from $x_{min}$ to $x_{max}$, $y$ must vary from 0 to 3.3 V.
+We leave the above equation in the above form since differential amplifiers are often used to construct level adjusters as the transfer function for a differential amplifier has the same form of the above equation (refer back to Chapter 2). Thus if we have an input signal $x$ that varies from $x_{min}$ to $x_{max}$ and an output signal $y$ must vary from $y_{min}$ to $y_{max}$, we shall use a differential amplifier circuit.
 
 <div class="example" markdown="1">
 #### **Example 3.1**
