@@ -26,7 +26,7 @@ We can write the operation of this circuit quite simply. Consider an input signa
 
 $$y = m(x +c)$$
 
-We leave the above equation in that form as differential amplifiers are often used to construct level adjusters as their transfer function has the same form (refer back to Chapter 2). Thus, if we have an input signal $x$ that varies from $x_{min}$ to $x_{max}$ and require an output signal $y$ that varies from $y_{min}$ to $y_{max}$, we shall use a differential amplifier circuit.
+Differential amplifiers are often used to construct level adjusters as their transfer function mimics the linear transformation above (refer back to Chapter 2). Thus, if we have an input signal $x$ that varies from $x_{min}$ to $x_{max}$ and require an output signal $y$ that varies from $y_{min}$ to $y_{max}$, we shall use a differential amplifier circuit.
 
 <div class="example" markdown="1">
 #### **Example 3.1**
