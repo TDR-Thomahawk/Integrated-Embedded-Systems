@@ -7,7 +7,7 @@ nav_order: 4
 
 # Chapter 3: Interfacing with Digital Systems
 
-Interfacing a micro-controller with external circuitry can be a challenging task and frequently requires a signal to be either multiplied by a gain or offset by some value. This signal conditioning is completed on both micro-controller inputs and outputs.
+Interfacing a micro-controller with external circuitry can be a challenging task and frequently requires a signal to be either multiplied by a gain or offset by some value. This signal conditioning is perfomed on both micro-controller inputs and outputs.
 
 In Chapter 1 we showed how a MOSFET H-bridge can be driven with a micro-controller by using two NPN BJT level adjusters. This simple addition to the H-bridge operates by multiplying the input signal from a micro-controller with some gain and shows how the output of a micro-controller can be conditioned.
 
@@ -26,7 +26,7 @@ We can write the operation of this circuit quite simply. Consider an input signa
 
 $$y = m(x +c)$$
 
-We leave the above equation in the above form since differential amplifiers are often used to construct level adjusters as the transfer function for a differential amplifier has the same form of the above equation (refer back to Chapter 2). Thus if we have an input signal $x$ that varies from $x_{min}$ to $x_{max}$ and an output signal $y$ must vary from $y_{min}$ to $y_{max}$, we shall use a differential amplifier circuit.
+We leave the above equation in that form as differential amplifiers are often used to construct level adjusters as their transfer function has the same form (refer back to Chapter 2). Thus, if we have an input signal $x$ that varies from $x_{min}$ to $x_{max}$ and require an output signal $y$ that varies from $y_{min}$ to $y_{max}$, we shall use a differential amplifier circuit.
 
 <div class="example" markdown="1">
 #### **Example 3.1**
