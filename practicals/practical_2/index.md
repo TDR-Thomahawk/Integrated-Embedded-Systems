@@ -14,7 +14,7 @@ Table of Contents
 * [Background](#background)
 * [What you will need](#what-you-will-need)
 * [Question 1: Basic comparator circuit](#question-1-basic-comparator-circuit)
-* [Question 2: NPN Emitter Follower](#question-2-npn-emitter-follower)
+* [Question 2: NPN Common-Emitter](#question-2-npn-common-emitter-switch)
 * [Question 3: Extension Question](#question-3-extension-question)
 * [Demonstration](#demonstrating-your-circuit)
 
@@ -69,14 +69,14 @@ If you vary your signal voltage above and below the reference, how does the **ou
 When the circuit's output is HIGH, what is the actual voltage? The STM32 datasheet specifies that to reliably detect a logic HIGH input on a GPIO pin, the input must be higher than 0.7 * V<sub>DD</sub>, where V<sub>DD</sub> is 3.3V for our particular STM32. Based on this, would your circuit be able to reliably signal logic HIGH to the microcontroller? 
 
 ### **Question 1.3**
-Set up your signal generator to output a 0 to 3.3V **triangle wave**. This is one of the waveforms available on the lab signal generators, and looks like an up-down-up-down line. Remember to adjust the amplitude such that the minimum voltage is 0, not -(3.3÷2)V. Connect this to V<sub>signal</sub> of your circuit. What do you expect the output to look like on an oscilloscope? 
+Set up your signal generator to output a 100Hz 0 to 3.3V **triangle wave**. This is one of the waveforms available on the lab signal generators, and looks like an up-down-up-down line. Remember to adjust the amplitude such that the minimum voltage is 0, not -(3.3÷2)V. Connect this to V<sub>signal</sub> of your circuit. What do you expect the output to look like on an oscilloscope? 
 
 If you think you know, connect both your circuit's output and input to the oscilloscope. What happens if you then vary the reference voltage? Do you see what you were expecting?
 
 {:.important}
 > **This setup forms part of the demonstration for Practical 2. Make sure your final circuit can be connected to a signal generator and the output plotted on your oscilloscope.**
 
-## Question 2: NPN Emitter Follower
+## Question 2: NPN Common-Emitter Switch
 If the practical is functioning as intended, you may have noticed a problem in Question 1.2 - the HIGH output of the LM358 is roughly around the cutoff value for the STM32 to detect a HIGH logic signal. You may get lucky and the random tolerance of your particular chip is a little higher than the cutoff, or you may be unlucky and its well below the threshhold. The point is is that this is obviously not good enough.
 
 A simple solution is to add a switch to the output of the op-amp such that the ~2.6V signal can turn on an off a voltage much closer to 3.3V logic HIGH which will switch the STM32 more reliably. The easiest solution is to use an NPN transistor in the ```common-emitter``` configuration. As [Wikipedia has a very helpful article](https://en.wikipedia.org/wiki/Common_emitter) on the common-emitter configuration, you are trusted to be able to build the circuit yourself. 
@@ -97,7 +97,7 @@ You should use the supplied 3.3kOhm and 10kOhm resistors for R<sub>C</sub> and R
 Once you have shown the switch is saturated, build your design and answer the questions below:
 
 ### **Question 2.1**
-If you have correctly built the emitter-follower switch, you should see your output toggle between 3.3V and 0V as V<sub>signal</sub> varies above and below the reference voltage. Do you see this behaviour? 
+If you have correctly built the common-emitter switch, you should see your output toggle between 3.3V and 0V as V<sub>signal</sub> varies above and below the reference voltage. Do you see this behaviour? 
 
 Note! While the switch should have a HIGH value much closer to 3.3V, the LOW value might be slightly higher than 0V. This is fine, as long as it is safely lower than 0.7V (the maximum LOW value for the STM32). Why do you think this might be?
 
@@ -136,7 +136,7 @@ As you sweep the input signal from 0 → 10V, you should see the output change t
 
 ## Demonstrating your circuit
 
-When you are happy with your comparator circuit and transistor, you can demonstrate your circuit to a tutor. To prepare you should set up Question 1 and Question 2 on your breadboard, and connect a 1kHz 0V → 3.3V V<sub>pp</sub> triangle wave signal to the input of your circuit. You should attach one oscilloscope probe to the input signal of your circuit (i.e. the triangle wave signal coming from the signal generator) and the second probe to the output of the circuit. Both signals should be clearly visible on the oscilloscope.
+When you are happy with your comparator circuit and transistor, you can demonstrate your circuit to a tutor. To prepare you should set up Question 1 and Question 2 on your breadboard, and connect a 100Hz 0V → 3.3V V<sub>pp</sub> triangle wave signal to the input of your circuit. You should attach one oscilloscope probe to the input signal of your circuit (i.e. the triangle wave signal coming from the signal generator) and the second probe to the output of the circuit. Both signals should be clearly visible on the oscilloscope.
 
 **You must set your comparators reference voltage to 2V**.
 
@@ -144,7 +144,7 @@ If the above is set up, please get a tutor to come and mark your demonstration.
 
 ### Demonstration procedure
 * Measure the reference voltage using a multimeter to show that it is 2V.
-* Show on the oscilloscope that the signal generator is outputing a 1kHz 0V → 3.3V V<sub>pp</sub> triangle wave signal.
+* Show on the oscilloscope that the signal generator is outputing a 100Hz 0V → 3.3V V<sub>pp</sub> triangle wave signal.
 * Show on the oscilloscope that the comparator SWITCHES when the signal voltage is greater than 2V and then again when the signal voltage is lower than 2V (polarity does not matter).
 * Show calculations proving that Rb and Rc values ensure PN2222 transistor is saturated (should be on a loose piece of paper that can be submitted).
 * Is there a PN2222 transistor biasing the op-amp output voltage? Show where it is on the breadboard and that it is connected to the op-amp.
@@ -156,7 +156,7 @@ The following mark scheme will be used to mark your practical:
 - [ ] Is the triangle wave amplitude and frequency set correctly? **+2 marks**
     - [ ] Does the comparator toggle the circuit output at +2V? **+4 marks**
 - [ ] Do the values of Rb and Rc for the transistor ensure that it is operating in the saturation region? Show calculations. **+3 marks**
-- [ ] Is there an emitter-follower NPN transistor adjusting the output voltage? **+3 marks**
+- [ ] Is there an common-emitter configuration NPN transistor adjusting the output voltage? **+3 marks**
     - [ ] Is the output 0 → 3.3V (with a bit of tolerance around 0V)? **+2 marks**
 - [ ] Does the extension circuit correctly toggle in two places over the 0 → 10V range? **+2 bonus marks**
 
